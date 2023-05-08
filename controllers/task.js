@@ -20,19 +20,22 @@ export const newTask = async (req, res, next) => {
   }
 };
 
-export const getMyTask = async (req, res, next) => {
-  try {
-    const userid = req.user._id;
+export const getMyTask = (req, res, next) => {
+  console.log('req', req.body)
+  // try {
+  //   const userid = req.user._id;
 
-    const tasks = await Task.find({ user: userid });
+  //   console.log('userid', req);
 
-    res.status(200).json({
-      success: true,
-      tasks,
-    });
-  } catch (error) {
-    next(error);
-  }
+  //   const tasks = await Task.find({ user: userid });
+
+  //   res.status(200).json({
+  //     success: true,
+  //     tasks,
+  //   });
+  // } catch (error) {
+  //   next(error);
+  // }
 };
 
 export const updateTask = async (req, res, next) => {

@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 
 export const isAuthenticated = async (req, res, next) => {
   const { token } = req.cookies;
+  // const { token } = req.body.user;
 
   if (!token)
     return res.status(404).json({
@@ -10,7 +11,8 @@ export const isAuthenticated = async (req, res, next) => {
       message: "Login First",
     });
 
-  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  // const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  const decoded = jwt.verify(token, `${process.env.JWT_SECRET}`);
 
   req.user = await User.findById(decoded._id);
   next();
